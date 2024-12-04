@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصميم القطاعات كاملة العشوائية (RCBD)</title>
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="animated-background"></div>
+    <div class="container">
+        <h1 class="title-animation">تصميم القطاعات كاملة العشوائية (RCBD)</h1>
+        
+        <div class="glass-effect">
+            <div class="basic-equation">
+                <div class="formula">
+                    Total SS = Treatment SS + Replicates SS + Error SS
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div>
+                    <label for="treatments">عدد المعاملات:</label>
+                    <input type="number" id="treatments" min="2" value="3">
+                </div>
+                <div>
+                    <label for="blocks">عدد المكررات:</label>
+                    <input type="number" id="blocks" min="2" value="3">
+                </div>
+                <button id="createTableBtn" class="neon-button">إنشاء الجدول</button>
+            </div>
+        </div>
+
+        <div class="glass-effect">
+            <div id="dataTable"></div>
+            <button id="calculateBtn" class="neon-button calculate-btn" style="display: none;">حساب النتائج</button>
+        </div>
+
+        <div id="results" class="glass-effect" style="display: none;">
+            <h2 class="steps-title">خطوات الحل</h2>
+            
+            <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                    <span>1. معامل التصحيح (C.F.)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="step-content"></div>
+            </div>
+
+            <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                    <span>2. مجموع المربعات الكلي (Total SS)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="step-content"></div>
+            </div>
+
+            <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                    <span>3. مجموع مربعات المعاملات (Treatment SS)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="step-content"></div>
+            </div>
+
+            <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                    <span>4. مجموع مربعات المكررات (Replicates SS)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="step-content"></div>
+            </div>
+
+            <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                    <span>5. مجموع مربعات الخطأ (Error SS)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="step-content"></div>
+            </div>
+
+            <div class="anova-table">
+                <h3>ANOVA</h3>
+                <div id="anovaTable"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

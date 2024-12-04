@@ -1,0 +1,14 @@
+/* خط Cairo */
+@font-face {
+    font-family: 'Cairo';
+    font-style: normal;
+    font-weight: 400;
+    src: url('cairo-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Cairo';
+    font-style: normal;
+    font-weight: 700;
+    src: url('cairo-bold.woff2') format('woff2');
+}

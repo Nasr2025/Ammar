@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+/* الخط والألوان الأساسية */
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --text-color: #333333;
+    --background-color: #f5f5f5;
+    --glass-background: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* تأثير الخلفية المتحركة */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, #f5f5f5, #ffffff);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* الحاوية الرئيسية */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* العنوان */
+.title-animation {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* تأثير الزجاج */
+.glass-effect {
+    background: var(--glass-background);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* المعادلة الأساسية */
+.basic-equation {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.formula {
+    font-size: 1.2em;
+    color: var(--secondary-color);
+    direction: ltr;
+    padding: 15px;
+    background: rgba(33, 150, 243, 0.1);
+    border-radius: 8px;
+    margin: 10px 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* مجموعة الإدخال */
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+label {
+    color: var(--text-color);
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    background: #ffffff;
+    border: 1px solid var(--glass-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: var(--text-color);
+    font-size: 1em;
+    width: 100px;
+}
+
+/* الأزرار */
+.neon-button {
+    background: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.neon-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.calculate-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 15px 30px;
+    font-size: 1.2em;
+}
+
+/* جدول البيانات */
+#dataTable {
+    overflow-x: auto;
+    margin: 20px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #ffffff;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+}
+
+th {
+    background: var(--primary-color);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+td input[type="number"] {
+    width: 80px;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+}
+
+/* خطوات الحل */
+.steps-title {
+    color: var(--primary-color);
+    text-align: center;
+    margin: 30px 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.step {
+    margin-bottom: 20px;
+}
+
+.step-header {
+    background: var(--primary-color);
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.step-content {
+    background: #ffffff;
+    padding: 0 20px;
+    border-radius: 0 0 8px 8px;
+    color: var(--text-color);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.step-content.show {
+    max-height: 500px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+/* جدول ANOVA */
+.anova-table {
+    margin: 20px 0;
+}
+
+.anova-table h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.anova-table table {
+    direction: ltr;
+}
+
+/* التفسير */
+.interpretation {
+    text-align: center;
+}
+
+.interpretation h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+#interpretation {
+    color: var(--text-color);
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* تحسينات الاستجابة */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .title-animation {
+        font-size: 1.5em;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+
+    td input[type="number"] {
+        width: 60px;
+        font-size: 0.9em;
+    }
+
+    .step-header {
+        font-size: 0.9em;
+    }
+
+    .formula {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+    
+    .neon-button {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+
+    .glass-effect {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .steps-title {
+        font-size: 1.3em;
+        margin: 20px 0;
+    }
+
+    #interpretation {
+        font-size: 1em;
+    }
+}
+
+/* تكملة الأنماط */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب التباين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            padding: 0;
+            direction: rtl;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body.main-form {
+            background: linear-gradient(-45deg, #0066ff, #ffffff, #ff0000, #00ff00);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .form-group {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+        @keyframes textGradient {
+            0% {
+                background-position: 0% 50%;
+                background-image: linear-gradient(-45deg, #0066ff, #ffffff, #ff0000, #00ff00);
+            }
+            50% {
+                background-position: 100% 50%;
+                background-image: linear-gradient(-45deg, #0066ff, #ffffff, #ff0000, #00ff00);
+            }
+            100% {
+                background-position: 0% 50%;
+                background-image: linear-gradient(-45deg, #0066ff, #ffffff, #ff0000, #00ff00);
+            }
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background-size: 400% 400%;
+            animation: textGradient 15s ease infinite;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+            opacity: 0.5;
+        }
+        select {
+            font-family: 'Tajawal', Arial, sans-serif;
+            padding: 15px;
+            margin: 20px;
+            width: 85%;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 18px;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+            padding-right: 45px;
+            font-weight: 500;
+        }
+        select:focus {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        select option {
+            font-family: 'Tajawal', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+        }
+        select option[value=""] {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        select option[value="CRD"] {
+            color: #7fff7f;
+            font-weight: 500;
+        }
+        select option[value="RCBD"] {
+            color: #7fbfff;
+            font-weight: 500;
+        }
+        select option[value="LSD"] {
+            color: #ff7fff;
+            font-weight: 500;
+        }
+        button {
+            font-family: 'Tajawal', Arial, sans-serif;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+        button:hover::after {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        .iframe-wrapper {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            display: none;
+            direction: ltr !important;
+        }
+        iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            display: none;
+            z-index: 2;
+            opacity: 0;
+            padding: 12px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            color: white;
+            font-weight: 500;
+            min-width: 100px;
+            text-align: center;
+        }
+        .back-button:hover {
+            background: linear-gradient(45deg, #1976D2, #1565C0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+        }
+        /* تخصيص شريط التمرير لصفحات التصاميم */
+        ::-webkit-scrollbar {
+            width: 12px;
+            position: fixed;
+            right: 0;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            border-radius: 10px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #1976D2, #1565C0);
+        }
+    </style>
+</head>
+<body class="main-form">
+    <div class="container">
+        <h1>حساب التباين</h1>
+        <div>
+            <select id="designSelect">
+                <option value="">اختر التصميم</option>
+                <option value="CRD">CRD - التصميم العشوائي الكامل</option>
+                <option value="RCBD">RCBD - تصميم القطاعات العشوائية الكاملة</option>
+                <option value="LSD">LSD - تصميم المربع اللاتيني</option>
+            </select>
+        </div>
+        <button onclick="showDesign()">اختيار</button>
+    </div>
+    <div class="iframe-wrapper" id="iframeWrapper">
+        <iframe id="designFrame"></iframe>
+    </div>
+    <button onclick="goBack()" class="back-button" id="backButton">رجوع</button>
+
+    <script>
+        function showDesign() {
+            const select = document.getElementById('designSelect');
+            const frame = document.getElementById('designFrame');
+            const wrapper = document.getElementById('iframeWrapper');
+            const container = document.querySelector('.container');
+            const backButton = document.getElementById('backButton');
+            const body = document.body;
+            
+            if (select.value) {
+                frame.src = `${select.value}/index.html`;
+                container.style.opacity = '0';
+                body.classList.remove('main-form');
+                
+                setTimeout(() => {
+                    container.style.display = 'none';
+                    wrapper.style.display = 'block';
+                    backButton.style.display = 'block';
+                    document.body.style.padding = '0';
+                    document.body.style.margin = '0';
+                    document.body.style.overflow = 'hidden';
+                    
+                    frame.onload = function() {
+                        const css = `
+                            <style>
+                                html {
+                                    direction: rtl !important;
+                                }
+                                body {
+                                    direction: rtl !important;
+                                    overflow-y: scroll;
+                                    padding-left: 0 !important;
+                                    margin: 0 !important;
+                                }
+                                /* تخصيص شريط التمرير */
+                                ::-webkit-scrollbar {
+                                    width: 12px;
+                                }
+                                ::-webkit-scrollbar-track {
+                                    background: rgba(0, 0, 0, 0.1);
+                                    border-radius: 10px;
+                                }
+                                ::-webkit-scrollbar-thumb {
+                                    background: linear-gradient(45deg, #2196F3, #1976D2);
+                                    border-radius: 10px;
+                                    border: 3px solid rgba(0, 0, 0, 0.1);
+                                }
+                                ::-webkit-scrollbar-thumb:hover {
+                                    background: linear-gradient(45deg, #1976D2, #1565C0);
+                                }
+                            </style>
+                        `;
+                        
+                        // إضافة CSS إلى head الصفحة
+                        frame.contentWindow.document.head.insertAdjacentHTML('beforeend', css);
+
+                        // تعديل اتجاه الصفحة
+                        frame.contentWindow.document.documentElement.style.direction = 'rtl';
+                        frame.contentWindow.document.body.style.direction = 'rtl';
+                    };
+                    
+                    setTimeout(() => {
+                        wrapper.style.opacity = '1';
+                        backButton.style.opacity = '1';
+                    }, 50);
+                }, 300);
+            } else {
+                alert('الرجاء اختيار تصميم');
+            }
+        }
+
+        function goBack() {
+            const wrapper = document.getElementById('iframeWrapper');
+            const container = document.querySelector('.container');
+            const backButton = document.getElementById('backButton');
+            const body = document.body;
+            
+            wrapper.style.opacity = '0';
+            backButton.style.opacity = '0';
+            
+            setTimeout(() => {
+                wrapper.style.display = 'none';
+                backButton.style.display = 'none';
+                document.body.style.padding = '20px';
+                document.body.style.overflow = 'auto';
+                body.classList.add('main-form');
+                container.style.display = 'block';
+                setTimeout(() => {
+                    container.style.opacity = '1';
+                }, 50);
+            }, 300);
+        }
+    </script>
+</body>
+</html>

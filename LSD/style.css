@@ -1,0 +1,299 @@
+:root {
+    --primary-color: #ff0044;
+    --secondary-color: #0088ff;
+    --accent-color: #ff00ff;
+    --background-color: #0a192f;
+    --card-bg: #112240;
+    --text-color: #e6f1ff;
+    --hover-color: #00ffff;
+    --shadow: 0 4px 15px rgba(255, 0, 68, 0.2);
+    --neon-shadow: 0 0 10px rgba(255, 0, 68, 0.5),
+                   0 0 20px rgba(255, 0, 68, 0.3),
+                   0 0 30px rgba(255, 0, 68, 0.1);
+    --gradient: linear-gradient(135deg, rgba(255, 0, 68, 0.1), rgba(0, 136, 255, 0.1));
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--neon-shadow);
+}
+
+.calculate-btn {
+    font-size: 1.2em;
+    padding: 12px 35px;
+    margin: 20px auto;
+    display: block;
+}
+
+input[type="number"] {
+    width: 80px;
+    padding: 8px 12px;
+    margin: 0 10px;
+    border: 2px solid var(--primary-color);
+    background: rgba(255, 0, 68, 0.1);
+    color: var(--text-color);
+    border-radius: 6px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    background: rgba(0, 136, 255, 0.1);
+    box-shadow: var(--neon-shadow);
+}
+
+input[type="number"]:hover {
+    border-color: var(--hover-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 0, 68, 0.2);
+}
+
+th {
+    background: rgba(255, 0, 68, 0.1);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px rgba(255, 0, 68, 0.7),
+                 0 0 20px rgba(255, 0, 68, 0.5),
+                 0 0 30px rgba(255, 0, 68, 0.3);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--primary-color);
+    box-shadow: var(--neon-shadow);
+    border-radius: 2px;
+}
+
+.basic-equation {
+    text-align: center;
+    margin: 20px 0 40px;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 0, 68, 0.1);
+    transition: all 0.3s ease;
+}
+
+.basic-equation:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--neon-shadow);
+    border-color: var(--primary-color);
+}
+
+.basic-equation .formula {
+    font-size: 1.5em;
+    color: var(--secondary-color);
+    margin: 0;
+    padding: 10px;
+    direction: ltr;
+}
+
+.step-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 0, 68, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.step-box:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--neon-shadow);
+}
+
+.step-box h4 {
+    margin: 0;
+    color: var(--primary-color);
+    text-align: center;
+    position: relative;
+    padding-left: 20px;
+}
+
+.step-box h4::after {
+    content: '▼';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: var(--primary-color);
+}
+
+.step-box.active h4::after {
+    content: '▲';
+}
+
+.step-content {
+    display: none;
+    padding: 15px;
+    background: rgba(255, 0, 68, 0.05);
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.step-content .formula {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.step-content .calculation {
+    text-align: center;
+    direction: ltr;
+    font-family: 'Cairo', monospace;
+    margin-top: 10px;
+}
+
+.step-box.active .step-content {
+    display: block;
+}
+
+.anova-table {
+    display: none;
+    margin-top: 15px;
+    overflow-x: auto;
+    font-family: "Consolas", "Monaco", monospace;
+}
+
+.anova-table table {
+    width: 100%;
+    border-collapse: collapse;
+    direction: ltr;
+    margin: 0 auto;
+}
+
+.anova-table th, 
+.anova-table td {
+    border: 1px solid rgba(255, 0, 68, 0.2);
+    padding: 10px;
+    text-align: center;
+    font-family: "Consolas", "Monaco", monospace;
+}
+
+.anova-table th {
+    background: rgba(255, 0, 68, 0.1);
+    color: var(--primary-color);
+}
+
+.step-box.active .anova-table {
+    display: block;
+}
+
+.row-sum, .col-sum, .total-sum {
+    background: rgba(255, 0, 68, 0.1);
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.calculation, .anova-table td {
+    font-family: 'Cairo', monospace;
+    direction: ltr;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--card-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+}
+
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .input-group label {
+        margin-bottom: 0.5rem;
+    }
+
+    .calculator-box {
+        padding: 1rem;
+    }
+
+    .data-table {
+        font-size: 0.9rem;
+    }
+
+    .data-table input {
+        width: 60px;
+    }
+}

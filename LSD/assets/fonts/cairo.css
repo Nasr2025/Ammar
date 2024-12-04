@@ -1,0 +1,16 @@
+/* خط Cairo */
+@font-face {
+    font-family: 'Cairo';
+    src: url('Cairo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('Cairo-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
